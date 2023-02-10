@@ -19,6 +19,8 @@ def clean(line):
     # pattern_5=re.compile('(.*?)')#匹配一部分颜文字
     pattern_7=re.compile('L.*?的微博视频')
     pattern_8=re.compile('（.*?）')
+    pattern_9=re.compile('[0-9]*')#匹配数字
+    pattern_10=re.compile('[a-zA-Z]')#匹配英文字母
     #pattern_9=re.compile(u"\|[\u4e00-\u9fa5]*\|")#匹配中文
 
     line=line.replace('O网页链接','')
@@ -37,7 +39,9 @@ def clean(line):
     # print(line)
     # line=re.sub(pattern_5, '', line,0) #去除一部分颜文字
     line=re.sub(pattern_7, '', line,0) 
-    line=re.sub(pattern_8, '', line,0) 
+    line=re.sub(pattern_8, '', line,0)
+    line=re.sub(pattern_9,'',line,0)#去掉数字
+    line=re.sub(pattern_10,'',line,0)#去掉英文字母
 
     line=re.sub(r'\[\S+\]', '', line,0) #去除表情符号
     for i in deleteword:
@@ -57,7 +61,7 @@ def remove_emoji(string):
 
 # 读取Excel文件
 StreamLogger.info("读取Excel文件...")
-excel_name = '气候变化数据清洗rawdata'
+excel_name = '气候变化example'
 df = pd.read_excel(excel_name + '.xlsx')
 
 # df change to list
@@ -83,7 +87,7 @@ data = [jieba.lcut(item) for item in track(data)]
 # 去除停用词
 StreamLogger.info("去除停用词")
 stop_words = []
-with open('./stopwords/hit_stopwords.txt', 'r') as f:
+with open('./stopwords/hit_stopwords.txt', 'r',encoding='UTF-8') as f:
     for line in f:
         stop_words.append(line.strip())
 
