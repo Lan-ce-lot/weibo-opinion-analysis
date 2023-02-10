@@ -1,5 +1,7 @@
 import logging.config
-
+import logging
+# log info level
+# logging.basicConfig(level=logging.INFO)
 config = {
     'version': 1,
     'formatters': {

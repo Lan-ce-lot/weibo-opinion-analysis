@@ -1,6 +1,7 @@
 # python3
 #coding='utf-8'
 from importlib import reload
+import re
 import warnings
 warnings.filterwarnings("ignore")
 import pandas as pd
@@ -20,44 +21,30 @@ from rich.progress import track
 # from LDA import infile,deal,run,save_visual
 
 def infile(fliepath):
-    #输入分词好的TXT，返回train
-    '''
-    all=[]
-    with open(fliepath,'r',encoding='utf-8')as f:
-        all_1=list(f.readlines())#列表
-        for i in all_1:#一句
-            i=i.strip()#去除占位符
-            if i:
-                all=all+i.split(' ')
-
-    #字典统计词频
-    dic={}
-    for key in all:
-        dic[key]=dic.get(key,0)+1
-    #print(dic)
-    #清除词频低的词
-    all_2=[]#低词频列表
-    for key,value in dic.items():
-        if value<=5:
-            all_2.append(key)
-    '''
     StreamLogger.info('formatting data...')
     train = []
     with open(fliepath,'r',encoding='utf-8') as f:
         # f to string
-        for i in f.readlines():
-            i = i.strip()
-            i = i.replace("'", '')
-            i = i.replace(' ', '')
-            # i = i.replace('\n', '')
-            new_line=[]
-            if len(i)>1:
-                i = i.strip().split(',')
-                for w in i:
-                    if len(w)>1:
-                        new_line.append(w)
+        for i in track(f.readlines()):
+            n = re.findall(r"\[.*\]", i)[0]
+            new_line = eval(n)
             train.append(new_line)
     return train
+    # with open(fliepath,'r',encoding='utf-8') as f:
+    #     # f to string
+    #     for i in f.readlines():
+    #         i = i.strip()
+    #         i = i.replace("'", '')
+    #         i = i.replace(' ', '')
+    #         # i = i.replace('\n', '')
+    #         new_line=[]
+    #         if len(i)>1:
+    #             i = i.strip().split(',')
+    #             for w in i:
+    #                 if len(w)>1:
+    #                     new_line.append(w)
+    #         train.append(new_line)
+    # return train
 
 def deal(train):
     #输入train，输出词典,texts和向量
@@ -94,13 +81,14 @@ doc_lda = lda_model[corpus]
 def run(corpus_1,id2word_1,num,texts):
     StreamLogger.info('running LDA...')
     #标准LDA算法
-    lda_model = LdaModel(corpus=corpus_1, 
-                         id2word=id2word_1,
-                        num_topics=num,
-                       passes=60,
-                       alpha=(50/num),
-                       eta=0.01,
-                       random_state=42)
+    lda_model = LdaModel(
+        corpus=corpus_1, 
+        id2word=id2word_1,
+        num_topics=num,
+        passes=60,
+        alpha=(50/num),
+        eta=0.01,
+        random_state=42)
     # num_topics：主题数目
     # passes：训练伦次
     # num：每个主题下输出的term的数目
@@ -111,7 +99,11 @@ def run(corpus_1,id2word_1,num,texts):
     # 困惑度
     perplex=lda_model.log_perplexity(corpus_1)  # a measure of how good the model is. lower the better.
     # 一致性
-    coherence_model_lda = CoherenceModel(model=lda_model, texts=texts, dictionary=id2word_1, coherence='c_v')
+    coherence_model_lda = CoherenceModel(
+        model=lda_model, 
+        texts=texts, 
+        dictionary=id2word_1, 
+        coherence='c_v')
     coherence_lda = coherence_model_lda.get_coherence()
     #print('\n一致性指数: ', coherence_lda)   # 越高越好
     return lda_model,coherence_lda,perplex
@@ -263,7 +255,7 @@ def show_4(df_topic_sents_keywords,name):
 
 if __name__ == '__main__':
     # with open('气候变化202101.txt','r',encoding='utf-8') as f:
-    filename = '气候变化202101.txt'
+    filename = '气候变化.txt'
     train = infile(filename)
     name=filename.replace('.txt','')#后续结果文件名
     # print(train)
