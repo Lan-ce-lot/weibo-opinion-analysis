@@ -1,14 +1,18 @@
-# Weibo-LDA
+# weibo-opinion-analysis
 
 ## Brief introduction
 
 ## Usage
 
 ```shell
+git clone https://github.com/Lan-ce-lot/weibo-opinion-analysis.git
+```
+
+```shell
 pip install -r requirements_docs.txt
 ```
 
-## Setp
+## Sept
 
 ### 微博爬虫
 [weibo-search](https://github.com/Lan-ce-lot/weibo-search)
