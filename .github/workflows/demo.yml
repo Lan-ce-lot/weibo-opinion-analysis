@@ -23,7 +23,7 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          date1
+          date
     
   build_on_windows:
     # The type of runner that the job will run on
