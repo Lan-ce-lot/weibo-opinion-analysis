@@ -1,6 +1,6 @@
 # weibo-opinion-analysis
 
-![pytest](https://github.com/Lan-ce-lotweibo-opinion-analysis/actions/workflows/pytest.yml/badge.svg)
+![pytest](https://github.com/Lan-ce-lot/weibo-opinion-analysis/actions/workflows/pytest.yml/badge.svg)
 
 ## Brief introduction
 
