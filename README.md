@@ -46,3 +46,8 @@ topic选择
 
 > [dataabc/weibo-search](https://github.com/dataabc/weibo-search)\
 > [stay-leave/weibo-public-opinion-analysis](https://github.com/stay-leave/weibo-public-opinion-analysis)
+
+
+## GitHub仓库星标统计
+<!--替换成自己的仓库和名字就可以用了-->
+[![Stargazers over time](https://starchart.cc/Lan-ce-lot/weibo-opinion-analysis.svg)](https://github.com/Lan-ce-lot/weibo-opinion-analysis)
