@@ -2,13 +2,15 @@
 import re
 # import rich bar
 import sys
+
 sys.path.append('..')
-from logger.config import StreamLogger
 import logging
 from rich.progress import track
+
+
 def infile(fliepath):
     train = []
-    with open(fliepath,'r',encoding='utf-8') as f:
+    with open(fliepath, 'r', encoding='utf-8') as f:
         # f to string
         for i in track(f.readlines()):
             n = re.findall(r"\[.*\]", i)[0]

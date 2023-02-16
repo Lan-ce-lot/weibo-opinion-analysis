@@ -1,8 +1,6 @@
-import logging.config
-import logging
 # log info level
 # logging.basicConfig(level=logging.INFO)
-config = {
+configs = {
     'version': 1,
     'formatters': {
         'simple': {
@@ -24,7 +22,7 @@ config = {
         },
         # 其他的 handler
     },
-    'loggers':{
+    'loggers': {
         'StreamLogger': {
             'handlers': ['console'],
             'level': 'DEBUG',
@@ -37,9 +35,3 @@ config = {
         # 其他的 Logger
     }
 }
-
-logging.config.dictConfig(config)
-StreamLogger = logging.getLogger("StreamLogger")
-FileLogger = logging.getLogger("FileLogger")
-# 省略日志输出
-StreamLogger.info("StreamLogger")
