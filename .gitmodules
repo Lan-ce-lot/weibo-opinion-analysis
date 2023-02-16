@@ -1,0 +1,3 @@
+[submodule "data_clean/stopwords"]
+	path = data_clean/stopwords
+	url = https://github.com/goto456/stopwords.git
