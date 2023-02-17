@@ -36,6 +36,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
+          token: ${{ secrets.TOKEN }}
           path: './static'
       - name: Deploy to GitHub Pages
         id: deployment

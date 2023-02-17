@@ -168,3 +168,5 @@ cython_debug/
 
 # vscode
 .vscode/
+
+!static/*.html
