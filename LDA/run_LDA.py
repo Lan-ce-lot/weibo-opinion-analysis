@@ -1,31 +1,27 @@
 # python3
 # coding='utf-8'
 import re
-import warnings
 
-warnings.filterwarnings("ignore")
-import pandas as pd
-from gensim import corpora, models
-from gensim.models import LdaModel
-# from ldamattle import LdaMallet#导入mallet
-
-import pyLDAvis.gensim_models
-import sys
-
-sys.path.append('..')
-from logger.config import StreamLogger
 import matplotlib.pyplot as plt
+import pandas as pd
+import pyLDAvis.gensim_models
+from gensim import corpora, models
 from gensim.models import CoherenceModel
-
+from gensim.models import LdaModel
 from rich.progress import track
+
+from logger import StreamLogger
+
+
+# from ldamattle import LdaMallet#导入mallet
 
 
 # from LDA import infile,deal,run,save_visual
 
-def infile(fliepath):
+def infile(flie_path):
     StreamLogger.info('formatting data...')
     train = []
-    with open(fliepath, 'r', encoding='utf-8') as f:
+    with open(flie_path, 'r', encoding='utf-8') as f:
         # f to string
         for i in track(f.readlines()):
             n = re.findall(r"\[.*\]", i)[0]
@@ -270,7 +266,7 @@ def show_4(df_topic_sents_keywords, name):
 
 if __name__ == '__main__':
     # with open('气候变化202101.txt','r',encoding='utf-8') as f:
-    filename = '气候变化.txt'
+    filename = 'new.txt'
     train = infile(filename)
     name = filename.replace('.txt', '')  # 后续结果文件名
     # print(train)
@@ -284,7 +280,6 @@ if __name__ == '__main__':
     topic_list = optimal_model.print_topics()
     # 保存主题
 
-    # f=open('主题txt\\'+name+'.txt','w',encoding='utf-8')
     with open(name + '_topic.txt', 'w', encoding='utf-8') as f:
         for t in topic_list:
             f.write(' '.join(str(s) for s in t) + '\n')
