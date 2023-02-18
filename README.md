@@ -14,7 +14,7 @@ git clone https://github.com/Lan-ce-lot/weibo-opinion-analysis.git
 pip install -r requirements.txt
 ```
 
-## Sept
+## Step
 
 ### 微博爬虫
 
