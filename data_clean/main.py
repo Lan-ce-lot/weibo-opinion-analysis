@@ -126,7 +126,7 @@ if __name__ == '__main__':
     data = tmp
 
     # 去除停用词
-    delete_stopwords(data, './stopwords')
+    data = delete_stopwords(data, './stopwords')
 
     # 添加一列
     df["分词结果"] = data
