@@ -112,7 +112,9 @@ def run(corpus_1, id2word_1, num, texts):
 
 def save_visual(lda, corpus, id2word, name):
     # 保存为HTML
+
     d = pyLDAvis.gensim_models.prepare(lda, corpus, id2word)
+    # d = pyLDAvis.graphlab.prepare(lda, corpus)
     pyLDAvis.save_html(d, name + '.html')  # 可视化
 
 
@@ -266,7 +268,7 @@ def show_4(df_topic_sents_keywords, name):
 
 if __name__ == '__main__':
     # with open('气候变化202101.txt','r',encoding='utf-8') as f:
-    filename = 'new.txt'
+    filename = 'test.txt'
     train = infile(filename)
     name = filename.replace('.txt', '')  # 后续结果文件名
     # print(train)
